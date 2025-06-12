@@ -1,4 +1,4 @@
-FROM golang:1.19.6 as builder
+FROM golang:1.19.6@sha256:b87eec85a4d9ef3ace064a3039e043c9204c20b2f6556d916dcf2e56305ad925 as builder
 
 ENV ARCH=arm64
 ENV OS=linux

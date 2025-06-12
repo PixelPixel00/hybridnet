@@ -52,7 +52,7 @@ var (
 
 type peerInfo struct {
 	address                string
-	asn                    int
+	asn                    uint32
 	gracefulRestartSeconds uint32
 	password               string
 	allowNotEstablished    bool
@@ -67,7 +67,7 @@ func generatePeerConfig(p *peerInfo) *api.Peer {
 	return &api.Peer{
 		Conf: &api.PeerConf{
 			NeighborAddress: p.address,
-			PeerAsn:         uint32(p.asn),
+			PeerAsn:         p.asn,
 			AuthPassword:    p.password,
 		},
 		GracefulRestart: &api.GracefulRestart{

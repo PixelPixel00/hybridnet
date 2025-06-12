@@ -26,14 +26,14 @@ code-gen:
 	@hack/update-codegen.sh
 
 crd-yamls: bin/controller-gen ## Generate CustomResourceDefinition objects.
-	$(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=hybridnet webhook paths="./pkg/apis/..." output:crd:artifacts:config=${CRD_YAML_DIR} && rm -rf ./config
+	bin/controller-gen rbac:roleName=hybridnetsdn crd paths=./pkg/apis/... output:crd:dir=${CRD_YAML_DIR} output:stdout && rm -rf ./config
 
 generate: bin/controller-gen ## Generate code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.
 	$(CONTROLLER_GEN) object:headerFile="hack/boilerplate.go.txt" paths="./pkg/apis/..."
 
 CONTROLLER_GEN = $(shell pwd)/bin/controller-gen
 bin/controller-gen: ## Download controller-gen locally if necessary.
-	$(call go-get-tool,$(CONTROLLER_GEN),sigs.k8s.io/controller-tools/cmd/controller-gen@v0.4.1)
+	$(call go-get-tool,$(CONTROLLER_GEN),sigs.k8s.io/controller-tools/cmd/controller-gen@v0.16.5)
 
 # use command of "./bin/kubebuilder create api --group multicluster --kind RemoteXXX --version v1 --namespaced=false" to generate crd types
 KUBEBUILDER_BIN = $(shell pwd)/bin/kubebuilder

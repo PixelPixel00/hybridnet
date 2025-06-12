@@ -313,7 +313,7 @@ func collectGlobalNetworkInfoAndInit(ctx context.Context, client client.Reader, 
 
 			for _, peer := range network.Spec.Config.BGPPeers {
 				if recordBGPPeers {
-					bgpManager.RecordPeer(peer.Address, peer.Password, int(peer.ASN),
+					bgpManager.RecordPeer(peer.Address, peer.Password, peer.ASN,
 						peer.GracefulRestartSeconds, peer.AllowNotEstablished)
 				}
 

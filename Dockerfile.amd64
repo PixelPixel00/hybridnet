@@ -1,4 +1,4 @@
-FROM golang:1.19.6 as builder
+FROM golang:1.19.6@sha256:699d222b61fb23503d3d5f27599dd0dc2f79a037a5e09f74c285045ef5ce2812 as builder
 
 ENV ARCH=amd64
 ENV OS=linux
@@ -77,7 +77,7 @@ RUN cd /go/src/github.com/projectcalico/typha && \
     -B 0x${TYPHA_GIT_COMMIT}" "github.com/projectcalico/typha/cmd/calico-typha" && \
     chmod +x /go/src/github.com/projectcalico/typha/bin/calico-typha
 
-FROM alpine:3.14
+FROM alpine:3.14@sha256:71859b0c62df47efaeae4f93698b56a8dddafbf041778fd668bbd1ab45a864f8
 
 # replace apk source url
 RUN sed -i s@/dl-cdn.alpinelinux.org/@/mirrors.aliyun.com/@g /etc/apk/repositories && \

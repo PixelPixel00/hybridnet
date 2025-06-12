@@ -150,7 +150,7 @@ func NewManager(peeringInterfaceName, grpcListenAddress string, logger logr.Logg
 	return manager, nil
 }
 
-func (m *Manager) RecordPeer(address, password string, asn int, gracefulRestartTime int32, allowNotEstablished bool) {
+func (m *Manager) RecordPeer(address, password string, asn uint32, gracefulRestartTime int32, allowNotEstablished bool) {
 	if gracefulRestartTime == 0 {
 		gracefulRestartTime = 300
 	}
